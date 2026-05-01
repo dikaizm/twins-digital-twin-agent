@@ -1,5 +1,24 @@
 # AI Twin Factory - Digital Twin untuk Pabrik Baja Nirkarat
 
+> **🇮🇩 Proyek Hackathon AI Elevate - Mendukung Hilirisasi Indonesia**
+
+## 🚀 Quick Start
+
+```bash
+# Clone repository
+git clone <repo-url>
+cd ai-twin-factory
+
+# Jalankan semua services
+docker-compose up -d
+
+# Access services
+# Frontend: http://localhost:5173
+# API Docs: http://localhost:8001/docs
+```
+
+**📁 Lihat [README-IMPLEMENTATION.md](./README-IMPLEMENTATION.md) untuk dokumentasi lengkap implementasi kode.**
+
 ## 🇮🇩 Mendukung Hilirisasi Indonesia - Proyek Strategis Nasional
 
 Platform ini dikembangkan untuk mendukung **Proyek Hilirisasi Fase 2** khususnya pembangunan **Fasilitas Manufaktur Baja Nirkarat (Stainless Steel) dari Nikel** di Indonesia Morowali Industrial Park (IMIP), Sulawesi Tengah.
@@ -152,6 +171,24 @@ Platform **Digital Twin** berbasis AI untuk monitoring real-time fasilitas baja 
 | **Smart Alert** | Anomaly scores | Decision Agent (LLM) | Alert messages | Alert overlay on 3D |
 
 > **Note:** Detailed Layer 3 architecture available in [docs/ai-3d-design/layer3-detailed.md](docs/ai-3d-design/layer3-detailed.md)
+
+### Backend Architecture: Separate Services
+
+Untuk deployment production, sistem menggunakan **arsitektur microservices** dengan pemisahan:
+
+| Service | Tech | Responsibility | Resources |
+|---------|------|----------------|-----------|
+| **REST API Service** | Node.js/NestJS atau Python/FastAPI | Auth, CRUD, business logic, file upload | CPU-optimized |
+| **AI Backend Service** | Python/FastAPI | 3D reconstruction, anomaly detection, LLM agent | **GPU-required** |
+| **WebSocket Service** | Node.js/Socket.io | Real-time sensor streaming, live alerts | CPU-optimized |
+
+**Keuntungan:**
+- 🚀 **Scalability independent** - AI service bisa di-scale berdasarkan GPU demand
+- 💰 **Cost optimization** - API service tidak perlu GPU mahal
+- 🛡️ **Fault isolation** - Kalau AI crash, API masih bisa serve basic functions
+- 👥 **Team parallelization** - Backend dev & ML engineer bisa kerja independently
+
+📖 **Detail lengkap:** [docs/architecture/separate-services.md](docs/architecture/separate-services.md)
 
 ---
 
@@ -351,6 +388,7 @@ Bearing depan conveyor mengalami severe wear berdasarkan:
 |---------|-----------|
 | **[🏭 Stainless Steel Plant Reference](./docs/stainless-steel-plant.md)** | Arsitektur detail untuk Pabrik Baja Nirkarat IMIP |
 | **[🎬 Demo Scenario](./docs/demo-scenario.md)** | Script & storyboard demo hackathon |
+| **[🏗️ Backend Architecture](./docs/architecture/separate-services.md)** | Microservices: REST API + AI Backend + WebSocket |
 | **[🔬 Layer 3 AI/ML Detail](./docs/ai-3d-design/layer3-detailed.md)** | Spesifikasi teknis anomaly detection & AI agent |
 | **[📊 System Design](./docs/ai-3d-design/system-design.md)** | Arsitektur 3D Generator Agent |
 | **[📈 Diagrams](./docs/diagrams/workflow.drawio)** | Flowchart & arsitektur (DrawIO) |
@@ -433,6 +471,7 @@ Bearing depan conveyor mengalami severe wear berdasarkan:
 ## 📚 Resources & References
 
 ### Digital Twin
+- [Stelarea Twins](https://twins.stelarea.com/) - 3D Digital Twin Platform for Industry
 - NVIDIA Omniverse
 - AWS IoT TwinMaker
 - Azure Digital Twins

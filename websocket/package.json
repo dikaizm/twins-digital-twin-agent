@@ -1,0 +1,22 @@
+{
+  "name": "ai-twin-websocket",
+  "version": "1.0.0",
+  "description": "WebSocket service for real-time sensor streaming",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js"
+  },
+  "dependencies": {
+    "socket.io": "^4.6.1",
+    "redis": "^4.6.5",
+    "ioredis": "^5.3.1",
+    "dotenv": "^16.0.3",
+    "winston": "^3.8.2",
+    "jsonwebtoken": "^9.0.0",
+    "cors": "^2.8.5"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+}

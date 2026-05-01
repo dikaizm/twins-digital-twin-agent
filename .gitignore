@@ -1,0 +1,54 @@
+# Dependencies
+node_modules/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Virtual environments
+venv/
+env/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Build outputs
+dist/
+build/
+*.egg-info/
+
+# Uploads
+uploads/
+*.jpg
+*.jpeg
+*.png
+!frontend/public/*.png
+
+# Models (large files)
+*.pth
+*.ckpt
+*.safetensors
+models/
+
+# Database
+*.db
+*.sqlite
+
+# Logs
+*.log
+logs/

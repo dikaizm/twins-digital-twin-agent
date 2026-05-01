@@ -1,0 +1,35 @@
+# Training configuration for anomaly detection models
+
+data:
+  seq_len: 60
+  step: 1
+  train_split: 0.7
+  val_split: 0.15
+  test_split: 0.15
+  scaler_type: "robust"
+
+isolation_forest:
+  n_estimators: 100
+  max_samples: "auto"
+  contamination: 0.05
+  random_state: 42
+
+lstm:
+  input_dim: 12
+  hidden_dim: 64
+  num_layers: 2
+  dropout: 0.2
+  lr: 0.001
+  batch_size: 32
+  epochs: 50
+  early_stopping_patience: 10
+
+ensemble:
+  weights:
+    isolation_forest: 0.4
+    lstm: 0.6
+  percentile: 95
+
+training:
+  checkpoint_dir: "models/checkpoints"
+  save_best_only: true
