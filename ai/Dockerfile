@@ -6,12 +6,18 @@ WORKDIR /app
 RUN apt-get update && apt-get install -y \
     python3.11 \
     python3-pip \
+    git \
     libgl1-mesa-glx \
     libglib2.0-0 \
     libsm6 \
     libxext6 \
     libxrender-dev \
     && rm -rf /var/lib/apt/lists/*
+
+# Clone and install MapAnything
+RUN git clone https://github.com/facebookresearch/map-anything.git /tmp/map-anything && \
+    cd /tmp/map-anything && \
+    pip install -e ".[colmap]"
 
 # Copy requirements
 COPY requirements.txt .
